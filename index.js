@@ -12,7 +12,7 @@ import { UserController, PostController, CommentController } from './controllers
 import multer from 'multer';
 
 mongoose
-  .connect(process.env.MONGO_DB_URI)
+  .connect(process.env.MONGODB_URI)
   // .connect(
   //   'mongodb+srv://admin:AlexeevVova1960@cluster0.cv6hrln.mongodb.net/?retryWrites=true&w=majority',
   // )
