@@ -13,6 +13,9 @@ import multer from 'multer';
 
 mongoose
   .connect(process.env.MONGO_DB_URI)
+  // .connect(
+  //   'mongodb+srv://admin:AlexeevVova1960@cluster0.cv6hrln.mongodb.net/?retryWrites=true&w=majority',
+  // )
   .then(() => console.log('DB OK'))
   .catch((err) => console.log('DB error', err));
 
