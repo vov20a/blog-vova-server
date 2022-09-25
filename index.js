@@ -13,10 +13,10 @@ import { UserController, PostController, CommentController } from './controllers
 import multer from 'multer';
 
 mongoose
-  // .connect(process.env.MONGODB_URI)
-  .connect(
-    'mongodb+srv://admin:AlexeevVova1960@cluster0.cv6hrln.mongodb.net/blog?retryWrites=true&w=majority',
-  )
+  .connect(process.env.MONGODB_URI)
+  // .connect(
+  //   'mongodb+srv://admin:AlexeevVova1960@cluster0.cv6hrln.mongodb.net/blog?retryWrites=true&w=majority',
+  // )
   .then(() => console.log('DB OK'))
   .catch((err) => console.log('DB error', err));
 
