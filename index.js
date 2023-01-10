@@ -11,6 +11,9 @@ import {
 import { checkAuth, handleValidationErrors } from './utils/index.js';
 import { UserController, PostController, CommentController } from './controllers/index.js';
 import multer from 'multer';
+import dontenv from 'dotenv';
+
+dontenv.config();
 
 mongoose
   .connect(process.env.MONGODB_URI)
@@ -56,11 +59,17 @@ app.get('/tags', PostController.getLastTags);
 // app.get('/posts/tags', PostController.getLastTags);
 
 //CRUD POSTS
-app.post('/posts', checkAuth, postCreateValidation, registerValidation, PostController.create); //create one post
+app.post('/posts', checkAuth, postCreateValidation, handleValidationErrors, PostController.create); //create one post
 app.get('/posts', PostController.getAll);
 app.get('/posts/:id', PostController.getOne);
 app.delete('/posts/:id', checkAuth, PostController.remove);
-app.patch('/posts/:id', checkAuth, postCreateValidation, registerValidation, PostController.update); //update one post
+app.patch(
+  '/posts/:id',
+  checkAuth,
+  postCreateValidation,
+  handleValidationErrors,
+  PostController.update,
+); //update one post
 
 // comments
 app.post('/comments', checkAuth, commentCreateValidation, CommentController.create);
@@ -68,7 +77,7 @@ app.get('/comments', CommentController.getAll);
 app.get('/comments/:id', CommentController.getCommentsOnePost);
 app.delete('/comments/:id', checkAuth, CommentController.remove);
 
-app.listen(process.env.PORT || 4444, (err) => {
+app.listen(process.env.PORT, (err) => {
   if (err) {
     console.log(err);
   }
