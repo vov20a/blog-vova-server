@@ -38,7 +38,11 @@ const upload = multer({ storage });
 
 app.use(express.json());
 //для управления портами-разрешает frontend
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.REACT_APP_API_URL,
+  }),
+);
 app.use('/uploads', express.static('uploads'));
 
 app.post('/auth/login', loginValidation, handleValidationErrors, UserController.login);
